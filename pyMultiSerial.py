@@ -1,15 +1,8 @@
 
-import serial
-import threading
+
+import pyMultiSerial as p
 
 
-def test():
-    print ("Module imported!")
+gateway = p.MultiSerial()  
+gateway.start()
 
-
-    
-class MultiSerial():
-    
-
-    def test(self):
-        print ("Module imported!")
