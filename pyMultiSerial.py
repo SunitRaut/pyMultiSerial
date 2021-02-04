@@ -65,8 +65,6 @@ class MultiSerial():
         pass
     
     def scan_ports(self):
-        func = test_hook
-        func()
         if self.close:
             print("Stop scan_ports")
             return
@@ -90,6 +88,7 @@ class MultiSerial():
                 return
             self.ser.append(serial.Serial(port=portno,baudrate = 9600))
             temp_index=len(self.ser)-1
+            flag = True
             #Callback
             flag = self.port_found_callback(portno)
             #Callback
@@ -104,9 +103,9 @@ class MultiSerial():
                 '''
             if flag==True:
                 self.ports.add(portno)
-                #t3=threading.Thread(target=read_sink,args=([ser[temp_index],portno]))
-                #t3.daemon=True
-                #t3.start()
+                t3=threading.Thread(target=self.read_sink,args=([self.ser[temp_index],portno]))
+                t3.daemon=True
+                t3.start()
             else:
                 self.ser[temp_index].close()
                 self.ser.pop(temp_index)
@@ -115,10 +114,39 @@ class MultiSerial():
         
         except Exception as e:
             print(e)
-            print('Not Found: '+portno)
+            #print('Not Found: '+portno)
+ 
+            
         
+        def read_sink(self,i_serial,i_port):
+            
+            if self.close:
+                return
+            
+            
+            try: 
+                if (i_serial.inWaiting()>0):
+                    text = i_serial.readline().decode("utf=8")
+                    self.port_read_callback(i_port,text)
+                pass
+            
+            except serial.SerialException:
         
+                #i_serial.close()
+                if i_serial in self.ser:
+                    self.port_disconnection_callback(i_port)
+                    self.ser.remove(i_serial)
+                    #print("Sink disconnected")
+                    self.ports.discard(i_port)
+            finally: 
+                if self.close==False:
+                    t = threading.Thread(target=read_sink,args=([i_serial,i_port]))
+                    t.daemon = True
+                    t.start()
         
+
+
+
     
 '''
 Process:
