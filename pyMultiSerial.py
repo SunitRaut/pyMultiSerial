@@ -15,14 +15,21 @@ def test2():
 def test1():
     print("Just to see if it works")
 '''
-    
 
+
+    
+def test_hook():
+    print ("hook")
+    pass
     
 class MultiSerial():
     
     close = False
     ports = set()
     ser = [] 
+    port_connection_found_callback = 0
+    port_read_callback = 0
+    port_disconnection_callback = 0
 
     def test(self):
         print ("Module imported!")
@@ -34,10 +41,9 @@ class MultiSerial():
     def autopilot(self):
         try: 
             while (1):
-                '''Write your code from here'''
-        
-        
-                '''Write your code till here'''
+                '''Task Schedular goes here'''
+
+                '''   '''
                 pass
     
     
@@ -59,6 +65,8 @@ class MultiSerial():
         pass
     
     def scan_ports(self):
+        func = test_hook
+        func()
         if self.close:
             print("Stop scan_ports")
             return
@@ -82,6 +90,9 @@ class MultiSerial():
                 return
             self.ser.append(serial.Serial(port=portno,baudrate = 9600))
             temp_index=len(self.ser)-1
+            #Callback
+            flag = self.port_found_callback(portno)
+            #Callback
             #status.append(0);
             '''
             time.sleep(1.5)
@@ -91,21 +102,22 @@ class MultiSerial():
             print(y)
             if y==b"Hello\n":
                 '''
-                
-            print('Found: '+portno)
-            self.ports.add(portno)
-            #t3=threading.Thread(target=read_sink,args=([ser[temp_index],portno]))
-            #t3.daemon=True
-            #t3.start()
-            #else:
-                #self.ser[temp_index].close()
-                #self.ser.pop(temp_index)
+            if flag==True:
+                self.ports.add(portno)
+                #t3=threading.Thread(target=read_sink,args=([ser[temp_index],portno]))
+                #t3.daemon=True
+                #t3.start()
+            else:
+                self.ser[temp_index].close()
+                self.ser.pop(temp_index)
         except IOError:
             pass
         
         except Exception as e:
             print(e)
             print('Not Found: '+portno)
+        
+        
         
     
 '''
