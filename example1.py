@@ -7,6 +7,7 @@ gateway = p.MultiSerial()
 
 gateway.baudrate = 9600
 
+
 #Add Callbacks
 #Callback functions provide you an interface to perform an action at certain event.
 '''
@@ -14,7 +15,8 @@ List of Events for callback:
 1. On detecting a port connection
 2. On reading data from port
 3. On port disconection
-4. Callback to main thread to add other miscellaneous programming
+4. On Keyboard Interrupt (Ctrl+C)
+5. Callback to main thread to add other miscellaneous programming
 '''  
 # Callback function on detecting a port connection.
 # Parameters: Port Number, Serial Port Object
@@ -55,19 +57,28 @@ def port_disconnection_callback(portno):
 gateway.port_disconnection_callback = port_disconnection_callback
 
 
+# Callback on interrupt. Triggered when python script execution is interrupted.
+# Parameters: -
+def interrupt_callback():
+    print("Closing")
+    pass
+
+#register callback function
+gateway.interrupt_callback = interrupt_callback
+
+
+
 
 #Set gateway on autopilot mode (Optional). 
 #In this mode, the gateway runs on its own and handles the complete execution flow of program. 
 #In this mode, you can't add your own code. You can register callbacks.
-gateway.autopilot()
+gateway.Start()
 
 ##To stop the gateway, press Ctrl+C in the console or command line.
 
 # Do not write any code below gateway.autopilot(), as this method takes over the main thread.
 # Rely on callbacks to add your own code / funcionality into this program.
     
-
-
 
 
 
