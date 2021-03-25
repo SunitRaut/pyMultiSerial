@@ -1,7 +1,7 @@
 
 import serial
 import threading
-import time
+
 '''
 def test():
     print ("Module1 imported!")
@@ -31,6 +31,7 @@ class MultiSerial():
     port_connection_found_callback = 0
     port_read_callback = 0
     port_disconnection_callback = 0
+    interrupt_callback = 0
 
     def test(self):
         print ("Module imported!")
@@ -39,7 +40,7 @@ class MultiSerial():
         if(self.close==False):
             t1.start()
             
-    def autopilot(self):
+    def Start(self):
         try: 
             while (1):
                 '''Task Schedular goes here'''
@@ -47,8 +48,10 @@ class MultiSerial():
                 '''   '''
                 pass
     
+                
     
-        except Exception:
+        except:
+            self.interrupt_callback();
             pass
 
         finally:
