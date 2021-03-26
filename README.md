@@ -1,6 +1,6 @@
 # pyMultiSerial
-[![GitHub release](https://img.shields.io/github/release/SunitRaut/WSN-for-RFM69-LowPowerLab.svg)](https://github.com/SunitRaut/WSN-for-RFM69-LowPowerLab)
-[![license](https://img.shields.io/github/license/SunitRaut/WSN-for-RFM69-LowPowerLab.svg)](https://github.com/SunitRaut/WSN-for-RFM69-LowPowerLab/blob/main/license.txt)
+[![GitHub release](https://img.shields.io/github/release/SunitRaut/pyMultiSerial.svg)](https://github.com/SunitRaut/pyMultiSerial)
+[![license](https://img.shields.io/github/license/SunitRaut/pyMultiSerial.svg)](https://github.com/SunitRaut/pyMultiSerial/blob/main/LICENSE)
 
 A Python library for continuous communication with multiple serial ports, based on pyserial module
 
@@ -16,6 +16,8 @@ A Python library for continuous communication with multiple serial ports, based 
 pip3 install pyMultiSerial
 '''
 
-Dependencies: 
+## Dependencies: 
+Dependencies are automatically installed during installation of pyMultiSerial.
+
 - PySerial
 - Threading
