@@ -12,9 +12,9 @@ A Python library for continuous communication with multiple serial ports, based 
 - You can add your own processing logic to the above events using callback functions 
 
 ## How to Install:
-'''
+```
 pip3 install pyMultiSerial
-'''
+```
 
 ## Dependencies: 
 Dependencies are automatically installed during installation of pyMultiSerial.
