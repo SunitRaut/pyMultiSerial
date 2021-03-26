@@ -73,8 +73,17 @@ class MultiSerial():
             print("Stop scan_ports")
             return
         print("scan_ports")
-        for i in range(99):
-            t2 = threading.Thread(target=self.port_connect,args=([i]))
+        for i in range(29):
+	# Windows Ports
+            t2 = threading.Thread(target=self.port_connect,args=([i,"COM"]))
+            t2.daemon = True
+            t2.start()
+	# Linux USB ports
+            t2 = threading.Thread(target=self.port_connect,args=([i,"/dev/ttyUSB"]))
+            t2.daemon = True
+            t2.start()
+	# Linux ACM ports
+            t2 = threading.Thread(target=self.port_connect,args=([i,"/dev/ttyUSB"]))
             t2.daemon = True
             t2.start()
             pass    
@@ -82,12 +91,12 @@ class MultiSerial():
         t1.daemon=True
         t1.start()
         
-    def port_connect(self,i):
+    def port_connect(self,i,prefix):
         if self.close:
             return
         try:
             #portno='/dev/ttyACM'+str(i)
-            portno='COM'+str(i)
+            portno=prefix+str(i)
             if portno in self.ports:
                 return
             self.ser.append(serial.Serial(port=portno,baudrate = self.baudrate, timeout=2))
