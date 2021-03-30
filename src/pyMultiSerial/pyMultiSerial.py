@@ -21,6 +21,27 @@ def test1():
 def test_hook():
     print ("hook")
     pass
+
+def dummy_func0():
+    return True
+    pass    
+
+def dummy_func1(p1):
+    return True
+    pass    
+
+def dummy_func2(p1,p2):
+    return True
+    pass    
+
+def dummy_func3(p1,p2,p3):
+    return True
+    pass    
+
+def dummy_func4(p1,p2,p3,p4):
+    return True
+    pass    
+
     
 class MultiSerial():
     
@@ -28,10 +49,11 @@ class MultiSerial():
     ports = set()
     ser = [] 
     baudrate = 9600
-    port_connection_found_callback = 0
-    port_read_callback = 0
-    port_disconnection_callback = 0
-    interrupt_callback = 0
+    timeout = 2
+    port_connection_found_callback = dummy_func3
+    port_read_callback = dummy_func4
+    port_disconnection_callback = dummy_func2
+    interrupt_callback = dummy_func1
 
     def test(self):
         print ("Module imported!")
@@ -51,7 +73,7 @@ class MultiSerial():
                 
     
         except:
-            self.interrupt_callback();
+            self.interrupt_callback()
             pass
 
         finally:
@@ -67,29 +89,61 @@ class MultiSerial():
         #t1.start()   
         self.scan_ports()
         pass
+
+    def read_sink(self,i_serial,i_port):
+        
+        if self.close:
+            return
+        
+        
+        try: 
+            if (i_serial.inWaiting()>0):
+                text = i_serial.readline().decode("utf=8")
+                #Callback
+                self.port_read_callback(i_port,i_serial,text)
+                #Callback
+            if self.close==False:
+                t = threading.Thread(target=self.read_sink,args=([i_serial,i_port]))
+                t.daemon = True
+                t.start()
+        
+        except serial.SerialException:
+    
+            #i_serial.close()
+            if i_serial in self.ser:
+                #Callback
+                self.port_disconnection_callback(i_port)
+                #Callback
+                self.ser.remove(i_serial)
+                #print("Sink disconnected")
+                self.ports.discard(i_port)
+                
+	
     
     def scan_ports(self):
         if self.close:
-            print("Stop scan_ports")
+            #print("Stop scan_ports")
             return
-        print("scan_ports")
+        #print("scan_ports")
         for i in range(29):
 	# Windows Ports
             t2 = threading.Thread(target=self.port_connect,args=([i,"COM"]))
             t2.daemon = True
             t2.start()
-	# Linux USB ports
+	# Linux/MAC USB ports
             t2 = threading.Thread(target=self.port_connect,args=([i,"/dev/ttyUSB"]))
             t2.daemon = True
             t2.start()
-	# Linux ACM ports
-            t2 = threading.Thread(target=self.port_connect,args=([i,"/dev/ttyUSB"]))
+	# Linux/MAC ACM ports
+            t2 = threading.Thread(target=self.port_connect,args=([i,"/dev/ttyACM"]))
             t2.daemon = True
             t2.start()
             pass    
         t1=threading.Timer(1,self.scan_ports)
         t1.daemon=True
         t1.start()
+        
+        
         
     def port_connect(self,i,prefix):
         if self.close:
@@ -99,22 +153,14 @@ class MultiSerial():
             portno=prefix+str(i)
             if portno in self.ports:
                 return
-            self.ser.append(serial.Serial(port=portno,baudrate = self.baudrate, timeout=2))
+            self.ser.append(serial.Serial(port=portno,baudrate = self.baudrate, timeout=self.timeout))
             temp_index=len(self.ser)-1
             flag = True
             #time.sleep(1.5)
             #Callback
             flag = self.port_connection_found_callback(portno, self.ser[temp_index])
             #Callback
-            #status.append(0);
-            '''
-            time.sleep(1.5)
-            
-            self.ser[temp_index].write(b"Hello\n")
-            y = ser[temp_index].readline()
-            print(y)
-            if y==b"Hello\n":
-                '''
+
             if flag==True:
                 self.ports.add(portno)
                 t3=threading.Thread(target=self.read_sink,args=([self.ser[temp_index],portno]))
@@ -132,36 +178,7 @@ class MultiSerial():
  
             
         
-        def read_sink(self,i_serial,i_port):
-            
-            if self.close:
-                return
-            
-            
-            try: 
-                if (i_serial.inWaiting()>0):
-                    text = i_serial.readline().decode("utf=8")
-                    #Callback
-                    self.port_read_callback(i_port,i_serial,text)
-                    #Callback
-                if self.close==False:
-                    t = threading.Thread(target=read_sink,args=([i_serial,i_port]))
-                    t.daemon = True
-                    t.start()
-            
-            except serial.SerialException:
-        
-                #i_serial.close()
-                if i_serial in self.ser:
-                    #Callback
-                    self.port_disconnection_callback(i_port)
-                    #Callback
-                    self.ser.remove(i_serial)
-                    #print("Sink disconnected")
-                    self.ports.discard(i_port)
-        
 
-        
 
 
     
