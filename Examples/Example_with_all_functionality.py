@@ -1,11 +1,12 @@
 import time
 
-import pyMultiSerial as p
+from pyMultiSerial import pyMultiSerial as p
 
 # Create object of class pyMultiSerial
 gateway = p.MultiSerial()
 
 gateway.baudrate = 9600
+gateway.timeout = 2
 
 
 #Add Callbacks
@@ -24,7 +25,7 @@ List of Events for callback:
 def port_connection_found_callback(portno, serial):
     print ("Port Found: "+portno)
     time.sleep(1.5)
-    serial.write(b"Hello\n")
+    serial.write(b"Password??\n")
     y = serial.readline()
     print(y)
     if y==b"Hello\n":
@@ -59,12 +60,14 @@ gateway.port_disconnection_callback = port_disconnection_callback
 
 # Callback on interrupt. Triggered when python script execution is interrupted.
 # Parameters: -
+
 def interrupt_callback():
     print("Closing")
     pass
 
 #register callback function
 gateway.interrupt_callback = interrupt_callback
+
 
 
 
@@ -78,7 +81,3 @@ gateway.Start()
 
 # Do not write any code below gateway.autopilot(), as this method takes over the main thread.
 # Rely on callbacks to add your own code / funcionality into this program.
-    
-
-
-
