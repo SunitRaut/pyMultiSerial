@@ -13,7 +13,7 @@ A Python library for continuous communication with multiple serial ports, based 
 
 ## How to Install:
 ```
-pip3 install pyMultiSerial
+pip3 install --index-url https://test.pypi.org/simple/ --no-deps pyMultiSerial==1.0.3
 ```
 
 ## Dependencies: 
