@@ -29,11 +29,12 @@ Contents:
 .. toctree::
     :maxdepth: 2
     
-    installation
+    overview
     getting_started
     multiserial_class
     examples
     appendix
+
 
 Indices and tables
 ==================
