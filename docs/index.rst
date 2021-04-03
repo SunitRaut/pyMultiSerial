@@ -15,7 +15,6 @@ Features:
 
 Other pages (online)
 
-- `project page on GitHub`_
 - `Download Page`_ with releases
 - This page, when viewed online is at https://pymultiserial.readthedocs.io/en/latest/ or
   http://pythonhosted.org/pyserial/ .
