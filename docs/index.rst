@@ -29,7 +29,7 @@ Contents:
 .. toctree::
     :maxdepth: 2
     
-    overview
+    pyMultiSerial
     getting_started
     multiserial_class
     examples
