@@ -31,7 +31,7 @@ Contents:
     
     installation
     getting_started
-    multiserial class
+    multiserial_class
     examples
     appendix
 
