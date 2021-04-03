@@ -1,8 +1,8 @@
 MultiSerial Class
 =================
-.. module::pyMultiSerial
+.. module:: pyMultiSerial
  
-.. class::MultiSerial
+.. class:: MultiSerial
  
 .. method:: __init__()
  
