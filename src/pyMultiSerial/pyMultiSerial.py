@@ -2,27 +2,9 @@
 import serial
 import threading
 
-'''
-def test():
-    print ("Module1 imported!")
-        
-def test2():
-    while(1):
-        time.sleep(1)
-        print ("Module2 imported!")
-     
 
-def test1():
-    print("Just to see if it works")
-'''
-
-
-    
-def test_hook():
-    print ("hook")
-    pass
-
-def dummy_func0():
+# Dummy functions for callbacks
+def dummy_func():
     return True
     pass    
 
@@ -43,6 +25,7 @@ def dummy_func4(p1,p2,p3,p4):
     pass    
 
     
+#MultiSerial Class
 class MultiSerial():
     
     close = False
@@ -57,6 +40,7 @@ class MultiSerial():
     port_read_callback = dummy_func4
     port_disconnection_callback = dummy_func2
     interrupt_callback = dummy_func1
+    loop_callback = dummy_func1
 
     def test(self):
         print ("Module imported!")
@@ -68,17 +52,15 @@ class MultiSerial():
     def Start(self):
         try: 
             while (1):
-                '''Task Schedular goes here'''
-                pass
-    
-                
+                '''Schedule periodic tasks in loop_callback'''
+                self.loop_callback()
+                pass                
     
         except:
             self.interrupt_callback()
             pass
 
         finally:
-    
             self.close = True
             pass
       
@@ -100,6 +82,7 @@ class MultiSerial():
         if i_serial in self.pause_ser:
             self.pause_ser.remove(i_serial)
         pass
+
     
 # Constructor        
     def __init__(self):
@@ -122,7 +105,9 @@ class MultiSerial():
                 if i_serial not in self.pause_ser:
                     text = i_serial.readline().decode("utf=8")
                     #Callback
+                    self.pause_port(i_serial)
                     self.port_read_callback(i_port,i_serial,text)
+                    self.resume_port(i_serial)
                     #Callback
             elif (i_serial not in self.ser):
                 #print("Ignored")
@@ -172,7 +157,7 @@ class MultiSerial():
             t2.daemon = True
             t2.start()
             pass    
-        t1=threading.Timer(1,self.scan_ports)
+        t1=threading.Timer(0.5,self.scan_ports)
         t1.daemon=True
         t1.start()
         
@@ -197,38 +182,15 @@ class MultiSerial():
             t3.start()
         
             #Callback
+            self.pause_port(self.ser[temp_index])
             self.port_connection_found_callback(portno, self.ser[temp_index])
+            self.resume_port(self.ser[temp_index])
             #Callback
-
-
-            
-
-
-            
-            
-            
+                                    
         except IOError:
             pass
         
         except Exception as e:
             print(e)
-            #print('Not Found: '+portno)
+
  
-            
-        
-
-
-
-    
-'''
-Process:
-    [done] Define constructor
-    Scan through all sinks
-    Perform optional authentication
-    Start a new thread if sink found / authtentication completed
-    Post message as soon as found and report it to main thread or provide a hook to process serial port data
-    Write on a serial port
-
-
-'''   
-    
