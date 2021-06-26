@@ -46,24 +46,25 @@ Here, **your_func_name** can be any name as decided by you. Arguments passed to 
 .. list-table:: Table
    :widths: 45 45 45
    :header-rows: 1
+   
    * - Event
      - callback_name
      - standard_arguments for callback function
-   * - New Serial Port Connection Found       
+   * - New Serial Port Connection Found  
      - port_connection_found_callback 
-     - Port Number, Serial Port Object             
-   * - Data Received on a Serial Port         
-     - port_read_callback             
-     - Port Number, Serial Port Object, Data    
-   * - Device disconnected from Serial Port   
-     - port_disconnection_callback    
-     - Port Number                              
-   * - On Keyboard Interrupt (Ctrl+C) by user 
-     - interrupt_callback             
-     - -                                        
-   * - Continuous Loop Execution              
+     - Port Number, Serial Port Object 
+   * - Data Received on a Serial Port  
+     - port_read_callback 
+     - Port Number, Serial Port Object, Data 
+   * - Device disconnected from Serial Port  
+     - port_disconnection_callback
+     - Port Number              
+   * - On Keyboard Interrupt (Ctrl+C) by user
+     - interrupt_callback
+     -                
+   * - Continuous Loop Execution
      - loop_callback
-     - -
+     - 
 
 In the above table, there are mainly three types of arguments:
   #. Port Number - The Port Number of the port on which the event has occured.
