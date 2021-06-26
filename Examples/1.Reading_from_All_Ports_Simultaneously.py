@@ -1,4 +1,12 @@
-from pyMultiSerial import pyMultiSerial as p
+'''
+-----------------------------------------------------------------------------------------
+Author: Sunit Raut - github.com/SunitRaut
+-----------------------------------------------------------------------------------------
+This example shows how to read data coming from one / multiple serial ports simultaneously.
+-----------------------------------------------------------------------------------------
+'''
+
+import pyMultiSerial as p
 import time
 
 # Create object of class MultiSerial
@@ -23,13 +31,13 @@ ms.port_read_callback = port_read_callback
 
 
 
-# Start Monitoring all Ports
+# Start Monitoring ports
 ms.Start()
 
-##To stop the gateway, press Ctrl+C in the console or command line.
+## To stop monitoring, press Ctrl+C in the console or command line.
 
-# Do not write any code below gateway.autopilot(), as this method takes over the main thread.
-# Rely on callbacks to add your own code / funcionality into this program.
+# Caution: Any code written below ms.Start() will be executed only after monitoring is stopped.
+# Make use of callback functions to execute your code. 
     
 
 
