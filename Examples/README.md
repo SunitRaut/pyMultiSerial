@@ -1,6 +1,6 @@
 # Examples
 
-## Arduino/NodeMCU - Raspberry Pi/Laptop USB Communication Examples
+## Python - Arduino Communication Examples
 
 Open this folder to check Arduino - Python Communication sample projects/examples. In these examples, source code for Raspberry Pi / PC Python as well as Arduino IDE have been provided.
 
