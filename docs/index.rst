@@ -30,7 +30,7 @@ Contents:
     :maxdepth: 2
     
     pyMultiSerial
-    getting_started
+    how_to_use
     multiserial_class
     examples
     appendix
