@@ -1,3 +1,28 @@
+'''
+**********************************************************************************
+ Author: Sunit Raut   github.com/SunitRaut
+**********************************************************************************
+ License
+**********************************************************************************
+ This program is free software; you can redistribute it 
+ and/or modify it under the terms of the GNU General    
+ Public License as published by the Free Software       
+ Foundation; either version 3 of the License, or        
+ (at your option) any later version.                    
+                                                        
+ This program is distributed in the hope that it will   
+ be useful, but WITHOUT ANY WARRANTY; without even the  
+ implied warranty of MERCHANTABILITY or FITNESS FOR A   
+ PARTICULAR PURPOSE. See the GNU General Public        
+ License for more details.                              
+                                                        
+ Licence can be viewed at                               
+ http://www.gnu.org/licenses/gpl-3.0.txt
+
+ Please maintain this license information along with authorship
+ and copyright notices in any redistribution of this code
+**********************************************************************************
+'''
 
 import serial
 import threading
@@ -53,6 +78,10 @@ class MultiSerial():
         try: 
             while (1):
                 '''Schedule periodic tasks in loop_callback'''
+		'''
+		Appropriate delay should be added by the user in loop_callback callback function
+		since this callback will run continuously
+		'''
                 self.loop_callback()
                 pass                
     
@@ -85,10 +114,7 @@ class MultiSerial():
 
     
 # Constructor        
-    def __init__(self):
-        #t1 = threading.Timer(1,self.test)
-        #t1.daemon = True
-        #t1.start()   
+    def __init__(self): 
         self.scan_ports()
         pass
     
@@ -110,17 +136,13 @@ class MultiSerial():
                     self.resume_port(i_serial)
                     #Callback
             elif (i_serial not in self.ser):
-                #print("Ignored")
                 text = i_serial.inWaiting()
-                #text = i_serial.readline().decode("utf=8")
             if self.close==False:
                 if i_serial in self.ser:
-                    #t = threading.Thread(target=self.read_sink,args=([i_serial,i_port]))
                     t = threading.Timer(self.monitoring_freq,self.read_sink,args=([i_serial,i_port]))
                     t.daemon = True
                     t.start()
                 else:
-                    #t1 = threading.Thread(target=self.read_sink,args=([i_serial,i_port,2]))
                     t1 = threading.Timer(self.monitoring_freq,self.read_sink,args=([i_serial,i_port]))
                     t1.daemon = True
                     t1.start()    
@@ -129,10 +151,8 @@ class MultiSerial():
             #Callback
             self.port_disconnection_callback(i_port)
             #Callback
-            #i_serial.close()
             if i_serial in self.ser:
                 self.ser.remove(i_serial)
-                #print("Sink disconnected")
             self.ports.discard(i_port)
                 
 
@@ -140,7 +160,6 @@ class MultiSerial():
 # Scan for new connections        
     def scan_ports(self):
         if self.close:
-            #print("Stop scan_ports")
             return
         #print("scan_ports")
         for i in range(self.portno_range):
@@ -167,7 +186,6 @@ class MultiSerial():
         if self.close:
             return
         try:
-            #portno='/dev/ttyACM'+str(i)
             portno=prefix+str(i)
             if portno in self.ports:
                 return
