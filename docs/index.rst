@@ -32,8 +32,7 @@ Contents:
     pyMultiSerial
     how_to_use
     multiserial_class
-    examples
-    appendix
+    callback_functions
 
 
 Indices and tables
