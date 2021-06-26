@@ -16,7 +16,7 @@ MultiSerial Class
     
        Stop the monitoring of ports.
 
-Attributes:
+    Attributes
 
     .. attribute:: baudrate (Necessary)
     
