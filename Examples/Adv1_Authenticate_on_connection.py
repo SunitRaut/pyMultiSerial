@@ -28,11 +28,10 @@ List of Events for callback:
 2. On reading data from port
 3. On port disconection
 4. On Keyboard Interrupt (Ctrl+C)
-5. Callback to main thread to add other miscellaneous programming
+5. Continuous loop execution
 '''  
 # Callback function on detecting a port connection.
 # Parameters: Port Number, Serial Port Object
-# Return: True if the port is to be accepted, false if the port is to be rejected based on some condition
 def port_connection_found_callback(portno, serial):
     print ("Port Found: "+portno)
     #time.sleep(1.5)
