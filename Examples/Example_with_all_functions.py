@@ -1,6 +1,16 @@
+'''
+-----------------------------------------------------------------------------------------
+Author: Sunit Raut - github.com/SunitRaut
+-----------------------------------------------------------------------------------------
+This example contains all possible functionalitiies provided within the library. 
+-----------------------------------------------------------------------------------------
+'''
+
 import time
 
-import pyMultiSerial as p
+#from pyMultiSerial import pyMultiSerial as p
+import pyMultiSerial_dev as p
+
 
 # Create object of class pyMultiSerial
 ms = p.MultiSerial()
@@ -23,9 +33,8 @@ List of Events for callback:
 # Parameters: Port Number, Serial Port Object
 # Return: True if the port is to be accepted, false if the port is to be rejected based on some condition
 def port_connection_found_callback(portno, serial):
-    ms.pause_port(serial)
     print ("Port Found: "+portno)
-    time.sleep(1.5)
+    #time.sleep(1.5)
     serial.write(b"Password?\n")
     y = serial.readline().decode("utf=8")
     print(y)
@@ -34,7 +43,6 @@ def port_connection_found_callback(portno, serial):
     else:
         ms.ignore_port(serial)
         print("Port rejected")
-    ms.resume_port(serial)
 
 #register callback function
 ms.port_connection_found_callback = port_connection_found_callback
@@ -63,7 +71,7 @@ ms.port_disconnection_callback = port_disconnection_callback
 # Parameters: -
 
 def interrupt_callback():
-    print("Closing")
+    print("Stopped Monitoring")
     pass
 
 #register callback function
@@ -71,15 +79,11 @@ ms.interrupt_callback = interrupt_callback
 
 
 
-
-
+## Start monitoring serial ports
 ms.Start()
 
-##To stop the program, press Ctrl+C in the console or command line.
+## To stop monitoring, press Ctrl+C in the console or command line.
 
-# Do not write any code below ms.Start(), as this method takes over the main thread.
-# Rely on callbacks to add your own code / funcionality into this program.
-    
-
-
+# Caution: Any code written below ms.Start() will be executed only after monitoring is stopped.
+# Make use of callback functions to execute your code. 
 
