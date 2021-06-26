@@ -2,7 +2,8 @@
 -----------------------------------------------------------------------------------------
 Author: Sunit Raut - github.com/SunitRaut
 -----------------------------------------------------------------------------------------
-This example contains all possible functionalitiies provided within the library. 
+This example authenticates the serial port with password for security purposes. This is 
+recommended to ensure that you are communicating with the right device only.
 -----------------------------------------------------------------------------------------
 '''
 
