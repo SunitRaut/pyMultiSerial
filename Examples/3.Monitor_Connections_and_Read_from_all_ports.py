@@ -1,5 +1,13 @@
-import time
+'''
+-----------------------------------------------------------------------------------------
+Author: Sunit Raut - github.com/SunitRaut
+-----------------------------------------------------------------------------------------
+This example shows how to Monitor connections as well as read simultaneously from serial 
+ports. This example is a combination of Examples 1 & 2.
+-----------------------------------------------------------------------------------------
+'''
 
+import time
 import pyMultiSerial as p
 
 # Create object of class pyMultiSerial
@@ -45,8 +53,8 @@ ms.port_disconnection_callback = port_disconnection_callback
 # Start Monitoring ports
 ms.Start()
 
-##To stop the program, press Ctrl+C in the console or command line.
+## To stop monitoring, press Ctrl+C in the console or command line.
 
-# Do not write any code below ms.Start(), as this method takes over the main thread.
-# Rely on callbacks to add your own code / funcionality into this program.
+# Caution: Any code written below ms.Start() will be executed only after monitoring is stopped.
+# Make use of callback functions to execute your code. 
     
