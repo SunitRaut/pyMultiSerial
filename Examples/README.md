@@ -20,10 +20,6 @@ This example shows how to monitor serial ports to check if a new port is connect
 
 This example shows how to Monitor connections as well as read simultaneously from serial ports. This example is a combination of Examples 1 & 2.
 
-### Example with all Functions
-
-Check this example to learn all functionalities of the library at one place.
-
 ## Advanced Examples
 
 ### Adv1_Authenticate_on_connection
