@@ -33,18 +33,22 @@ def dummy_func():
     pass    
 
 def dummy_func1(p1):
+    
     return True
     pass    
 
 def dummy_func2(p1,p2):
+    
     return True
     pass    
 
 def dummy_func3(p1,p2,p3):
+    
     return True
     pass    
 
 def dummy_func4(p1,p2,p3,p4):
+    
     return True
     pass    
 
@@ -197,7 +201,8 @@ class MultiSerial():
             #Callback
             self.pause_port(self.ser[temp_index])
             self.port_connection_found_callback(portno, self.ser[temp_index])
-            self.resume_port(self.ser[temp_index])
+            if temp_index == len(self.ser)-1:
+                self.resume_port(self.ser[temp_index])
             #Callback
                                     
         except IOError:
