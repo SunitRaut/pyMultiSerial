@@ -7,7 +7,6 @@ This example shows how to read data coming from one / multiple serial ports simu
 '''
 
 import pyMultiSerial as p
-import time
 
 # Create object of class MultiSerial
 ms = p.MultiSerial()
