@@ -6,12 +6,9 @@
 Overview
 ========
 
-A Python library for continuous communication with multiple serial ports, based on pyserial module.
+A Python module for continuous communication with multiple serial ports, based on pyserial module.
 
-pyMultiSerial module helps you to run 
-
-
-It is released under a free software license, see LICENSE_ for more
+It is released under a free software license, see https://github.com/SunitRaut/pyMultiSerial/blob/main/LICENSE for more
 details.
 
 
@@ -22,7 +19,6 @@ Other pages (online)
   http://pythonhosted.org/pymultiserial/ .
 
 .. _Python: http://python.org/
-.. _LICENSE: appendix.html#license
 .. _`Download Page`: http://pypi.python.org/pypi/pymultiserial
 
 
@@ -50,7 +46,7 @@ Requirements
 Installation
 ============
 
-This installs a package that can be used from Python (``import pyMultiSerial from pyMultiSerial``).
+This installs a package that can be used from Python (``import pyMultiSerial``).
 
 To install for all users on the system, administrator rights (root)
 may be required.
