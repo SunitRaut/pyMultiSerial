@@ -7,7 +7,6 @@ ports. This example is a combination of Examples 1 & 2.
 -----------------------------------------------------------------------------------------
 '''
 
-import time
 import pyMultiSerial as p
 
 # Create object of class pyMultiSerial
