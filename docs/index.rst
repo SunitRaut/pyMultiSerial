@@ -4,7 +4,7 @@
 Welcome to pyMultiSerial's documentation
 ===================================
 
-A Python library for continuous communication with multiple serial ports, based on pyserial module
+A Python module for continuous communication with multiple serial ports, based on pyserial module
 
 Features:
 - Monitor incoming data from multiple serial ports simultaneously.
