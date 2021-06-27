@@ -7,8 +7,6 @@ recommended to ensure that you are communicating with the right device only.
 -----------------------------------------------------------------------------------------
 '''
 
-import time
-
 import pyMultiSerial as p
 
 
@@ -33,7 +31,6 @@ List of Events for callback:
 # Parameters: Port Number, Serial Port Object
 def port_connection_found_callback(portno, serial):
     print ("Port Found: "+portno)
-    #time.sleep(1.5)
     serial.write(b"Password?\n")
     y = serial.readline().decode("utf=8")
     print(y)
