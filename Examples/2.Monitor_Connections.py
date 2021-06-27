@@ -7,7 +7,6 @@ a previously connected port is now disconnected.
 -----------------------------------------------------------------------------------------
 '''
 
-import time
 import pyMultiSerial as p
 
 # Create object of class pyMultiSerial
