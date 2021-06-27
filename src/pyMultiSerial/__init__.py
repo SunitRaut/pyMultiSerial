@@ -18,7 +18,6 @@
                                                         
  Licence can be viewed at                               
  http://www.gnu.org/licenses/gpl-3.0.txt
-
  Please maintain this license information along with authorship
  and copyright notices in any redistribution of this code
 **********************************************************************************
@@ -78,10 +77,6 @@ class MultiSerial():
         try: 
             while (1):
                 '''Schedule periodic tasks in loop_callback'''
-		'''
-		Appropriate delay should be added by the user in loop_callback callback function
-		since this callback will run continuously
-		'''
                 self.loop_callback()
                 pass                
     
