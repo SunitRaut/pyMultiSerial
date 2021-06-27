@@ -9,8 +9,7 @@ recommended to ensure that you are communicating with the right device only.
 
 import time
 
-#from pyMultiSerial import pyMultiSerial as p
-import pyMultiSerial_dev as p
+import pyMultiSerial as p
 
 
 # Create object of class pyMultiSerial
