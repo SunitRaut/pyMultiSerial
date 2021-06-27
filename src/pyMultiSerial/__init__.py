@@ -27,8 +27,10 @@ import serial
 import threading
 
 
+
 # Dummy functions for callbacks
 def dummy_func():
+    
     return True
     pass    
 
@@ -80,8 +82,12 @@ class MultiSerial():
     def Start(self):
         try: 
             while (1):
+
                 '''Schedule periodic tasks in loop_callback'''
                 self.loop_callback()
+                if self.close == True:
+                    self.Stop()
+                    exit
                 pass                
     
         except:
@@ -89,12 +95,22 @@ class MultiSerial():
             pass
 
         finally:
-            self.close = True
+            self.Stop()
             pass
+
+    def Stop(self):
+        self.close = True
+        self.ports.clear()
+        for i_serial in self.ser:
+            i_serial.close()
+        for i_serial in self.pause_ser:
+            i_serial.close()      
+        
+        
       
 # Function to ignore future communication with port until the port is disconnected
     def ignore_port(self,i_serial):
-        #self.ser[index].close()
+        #i_serial.close()
         if i_serial in self.ser:
             self.ser.remove(i_serial)
         pass
@@ -113,14 +129,14 @@ class MultiSerial():
 
     
 # Constructor        
-    def __init__(self): 
+    def __init__(self):
         self.scan_ports()
         pass
-    
+
     
 # Monitor port for incoming data
     def read_sink(self,i_serial,i_port):
-        
+        self.scan_ports()
         if self.close:
             return
         
@@ -150,6 +166,7 @@ class MultiSerial():
             #Callback
             self.port_disconnection_callback(i_port)
             #Callback
+            i_serial.close()
             if i_serial in self.ser:
                 self.ser.remove(i_serial)
             self.ports.discard(i_port)
@@ -161,7 +178,7 @@ class MultiSerial():
         if self.close:
             return
         #print("scan_ports")
-        for i in range(self.portno_range):
+        for i in range(self.portno_range+1):
 	# Windows Ports
             t2 = threading.Thread(target=self.port_connect,args=([i,"COM"]))
             t2.daemon = True
@@ -193,7 +210,6 @@ class MultiSerial():
             
             self.ports.add(portno)
             
-            #if self.ser in self.ser:
             t3=threading.Thread(target=self.read_sink,args=([self.ser[temp_index],portno]))
             t3.daemon=True
             t3.start()
