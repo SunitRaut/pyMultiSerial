@@ -95,5 +95,6 @@ If you need to stop monitoring for any reason, use below statement:
 ms.Stop()
 ```
 
+Here is an [instructable with simple Arduino-Raspberry Pi example](https://www.instructables.com/How-to-Monitor-Arduinos-Connected-to-Multiple-Port/)
 
 Hope this module helps you to build your Projects. In case of any issues do open an Issue on Github. 
