@@ -1,7 +1,7 @@
 # pyMultiSerial
 [![GitHub release](https://img.shields.io/github/release/SunitRaut/pyMultiSerial.svg)](https://github.com/SunitRaut/pyMultiSerial)
 [![license](https://img.shields.io/github/license/SunitRaut/pyMultiSerial.svg)](https://github.com/SunitRaut/pyMultiSerial/blob/main/LICENSE)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5035457.svg)](https://doi.org/10.5281/zenodo.5035457)
+[![DOI](https://zenodo.org/badge/328549967.svg)](https://zenodo.org/badge/latestdoi/328549967)
 
 A Python module for continuous communication with multiple serial ports, based on pyserial module
 
