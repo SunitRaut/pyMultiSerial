@@ -3,14 +3,15 @@
 [![license](https://img.shields.io/github/license/SunitRaut/pyMultiSerial.svg)](https://github.com/SunitRaut/pyMultiSerial/blob/main/LICENSE)
 [![DOI](https://zenodo.org/badge/328549967.svg)](https://zenodo.org/badge/latestdoi/328549967)
 
-A Python module for continuous communication with multiple serial ports, based on pyserial module
+A Python module for continuous communication with multiple serial ports, based on pyserial module. 
+PyMultiSerial has an Event-driven architecture with events like Connection, Disconnection, incoming data from port, etc. 
 
 ## Features: 
 - Monitor multiple serial ports simultaneously.
-- Detect connections to port automatically and starts monitoring them. 
-- Raises a trigger whenever data is received from the port. You can attach callback function to process this data on-demand. 
-- Detect disconnections from port automatically. 
-- You can add your own processing logic to the above events using callback functions 
+- Detect connections to ports automatically and start monitoring them. 
+- Raises a trigger whenever data is received from the port. You can attach a callback function to process this data on demand. 
+- Detect disconnections from the port automatically. 
+- You can add your processing logic to the above events using callback functions 
 
 ## How to Install:
 ```
