@@ -11,7 +11,14 @@ PyMultiSerial has an Event-driven architecture with events like Connection, Disc
 - Detect connections to ports automatically and start monitoring them. 
 - Raises a trigger whenever data is received from the port. You can attach a callback function to process this data on demand. 
 - Detect disconnections from the port automatically. 
-- You can add your processing logic to the above events using callback functions 
+- You can add your processing logic to the above events using callback functions
+
+## If you Like my Work, Buy me a Coffee!
+
+If this library makes your life easier and has helped bring your project to reality, I would appreciate a small token of gratitude. Click on the below icon to contribute.
+
+<a href="https://www.buymeacoffee.com/sunitraut" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+
 
 ## How to Install:
 ```
@@ -19,7 +26,7 @@ pip3 install pyMultiSerial
 ```
 
 ## Dependencies: 
-Dependencies are automatically installed during installation of pyMultiSerial.
+Dependencies are automatically installed during the installation of pyMultiSerial.
 
 - PySerial
 - Threading
